@@ -257,15 +257,22 @@ function closestPoint(p, vertices) {
 }
 
 function save() {
-  alert("Saving to test.json");
-  var outputBoxes = [];
-  for (var i = 0; i < boundingBoxes.length; i++) {
-    outputBoxes.push(new OutputBox(boundingBoxes[i]));
-  }
-  var output = {"bounding boxes": outputBoxes};
-  var stringifiedOutput = JSON.stringify(output);
-  var file = new File([stringifiedOutput], "test.json", {type: "/json;charset=utf-8"});
-  saveAs(file);
+    if (evaluation) {
+        var file_name = evaluation.get_filename().split(".")[0];
+        console.log(evaluation.get_filename());
+        var outputBoxes = [];
+        for (var i = 0; i < boundingBoxes.length; i++) {
+            outputBoxes.push(new OutputBox(boundingBoxes[i]));
+        }
+        var output = {
+            "bounding boxes": outputBoxes
+        };
+        var stringifiedOutput = JSON.stringify(output);
+        var file = new File([stringifiedOutput], file_name + '.json', {
+            type: "/json;charset=utf-8"
+        });
+        saveAs(file);
+    }
 }
 
 function save_image() {
