@@ -21,8 +21,8 @@ function next_frame(event) {
         evaluation.write_output();
         return;
     } 
-    var response = confirm('Do you want to move on to the next frame? You cannot go back to edit previous frames.');
-
+    // var response = confirm('Do you want to move on to the next frame? You cannot go back to edit previous frames.');
+    var response = true;
     if (response == true) {
         $("#next_frame").text("Next Frame (" + (evaluation.get_frame_number() + 1) + 
                                 "/" + evaluation.num_frames() + ")");
